@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-orange: #F39C12;
+    --brand-orange-dark: #E08E0B;
+    --brand-gray: #5D6D7E;
+    --light-warm-gray: #F2F0ED;
+    --off-white: #F9F8F6;
+    --dark-charcoal: #2C3E50;
+    --muted-gray: #8E8E93;
+    --light-border: rgba(0, 0, 0, 0.06);
+    --transparent-overlay: rgba(243, 156, 18, 0.08);
+
+    --background: 0 0% 100%;
+    --foreground: 210 29% 24%;
+    --card: 40 14% 97%;
+    --card-foreground: 210 29% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 24%;
+    --primary: 37 89% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 14% 42%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 40 10% 94%;
+    --muted-foreground: 240 4% 58%;
+    --accent: 37 89% 51%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 0% / 0.06;
+    --input: 0 0% 0% / 0.06;
+    --ring: 37 89% 51%;
+    --radius: 0.375rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-[#F2F0ED] text-[#2C3E50] antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-medium uppercase tracking-[0.08em] text-[#F39C12];
+  }
+
+  .section-padding {
+    @apply px-[6vw] py-[120px];
+  }
+
+  .section-padding-mobile {
+    @apply px-[4vw] py-[80px];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Marquee animation */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+/* Smooth scroll with Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 1;
+}
